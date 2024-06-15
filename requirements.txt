@@ -1,0 +1,5 @@
+./flotilla-python/library
+requests
+RPi.GPIO
+flask
+flask_cors
