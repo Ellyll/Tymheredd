@@ -110,10 +110,18 @@ if __name__ == '__main__':
         }
         url = os.environ["URL_API"]
         allwedd = os.environ["ALLWEDD_API"]
-        r = requests.post(url, json=data_dict, headers={ "Authorization":"Bearer " + allwedd })
-        if r.status_code != 200:
-            print(r.status_code, r.reason)
-
+        for i in range(1,3):
+          try:
+            r = requests.post(url, json=data_dict, headers={ "Authorization":"Bearer " + allwedd })
+            if r.status_code != 200:
+              print(r.status_code, r.reason)
+            else:
+              break
+          except KeyboardInterrupt:
+            raise
+          except Exception as ex:
+            print("POST wedi methu", ex)
+            sleep(60)
 
     try:
       temp = weather.temperature
